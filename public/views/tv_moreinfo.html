@@ -1,0 +1,149 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 id="movie_title">{{details_tv.name}}</h1><span></span>
+        </div>
+        <hr>
+    </div>
+    <div class="row" id="poster_row">
+        <div class="col-lg-4">
+            <img class="image-fluid post" ng-src="http://image.tmdb.org/t/p/w185/{{details_tv.poster_path}}">
+        </div>
+        <div class="col-lg-8" >
+            <h3>{{details_tv.first_air_date | limitTo:4}}</h3>
+            <span id="genres" ng-repeat="det in details_tv.genres">
+                {{det.name}},
+            </span>
+            <h3>Overview</h3>
+            <h4>{{details_tv.overview}}</h4>
+            <br><br><br><br>
+            <i class="fab fa-imdb icon_imdb" ng-show="moreInfo.imdbRating"></i><span class="rating">{{moreInfo.imdbRating}}</span><span id="rotten" ng-show="moreInfo.Ratings[1].Value"><img src="https://png.icons8.com/color/50/000000/rotten-tomatoes.png"></span><span class="rating">{{moreInfo.Ratings[1].Value}}</span>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Created By</h3>
+            <hr>
+            <span id="act" ng-repeat="dt in details_tv.created_by">{{dt.name}}  , </span>
+        </div>
+    <div class="row">
+            <div class="col-lg-12">
+                <h3>Trailer</h3>
+            </div>
+    </div>
+   <hr>
+    <div  ng-controller="tv_galleryCntr">
+        <div class="row gallery" id="video_row">
+                <div class="col-lg-12">
+                    <object id="video" data="https://www.youtube.com/embed/{{tv_key}}"></object>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Details</h3>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table  table-striped text-center" >
+            <tbody>
+                <tr>
+                    <td>Country</td>
+                    <td>{{details_tv.origin_country[0]}}</td>
+                </tr>
+                <tr>
+                    <td>Language</td>
+                    <td>{{details_tv.original_language}}</td>
+                </tr>
+                <tr>
+                    <td>Production</td>
+                    <td>{{details_tv.production_companies[0].name}}</td>
+                </tr>
+                <tr>
+                    <td>Number of Seasons</td>
+                    <td>{{details_tv.number_of_seasons}}</td>
+                </tr>
+                <tr>
+                    <td>Number of Episodes</td>
+                    <td>{{details_tv.number_of_episodes}}</td>
+                </tr>
+                <tr>
+                    <td>Episode run Time</td>
+                    <td>{{details_tv.episode_run_time[0]}}min</td>
+                </tr>
+                <tr>
+                    <td>Released</td>
+                    <td>{{details_tv.first_air_date}}</td>
+                </tr>
+                <tr>
+                    <td>Latest Season date</td>
+                    <td>{{details_tv.last_air_date}}</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>{{details_tv.type}}</td>
+                </tr>
+                <tr>
+                    <td>Website</td>
+                    <td><a ng-href="{{details_tv.homepage}}" target="_blank">{{details_tv.homepage}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-controller="tv_detCntr">
+        <div class="row">
+            <div class="col-lg-12" ng-show="arr[0]">
+                    <h3>Reviews</h3>
+            </div>   
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-6 pallet"  ng-repeat="review in tv_review">
+                <p id="review_content">{{review.content}}</p>
+                <small id="author_name">By : {{review.author}}</small>
+            </div>
+        </div>
+        <h3>Seasons</h3>
+        <hr>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" ng-repeat="data in seasons">
+                    <div class="card" >
+                            <div class="card-header" style="height:auto;">
+                                <img class="img-fluid card-image" src=" http://image.tmdb.org/t/p/w185/{{data.poster_path}}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="mov_title">{{data.name}}</h5>
+                            </div>
+                            <div class="card-footer">
+                                <a ng-href="#!/tv_details/{{data.id}}" id="det_but" ng-click="scroll()">View Deatils</a>
+                            </div>
+                        </div>
+                        <br><br><br>
+            </div>
+
+        </div>
+        
+        <div ng-controller="tv_similarCntr" class="similar" >
+                <h3 ng-show="tv_similarMovies_info.length != 0">Similar Series</h3>
+                <hr>
+        <div  class="row" ng-repeat="movie in tv_similarMovies_info | limitTo:2">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"  ng-repeat="mov in movie">
+                            <div class="card" >
+                                <div class="card-header" style="height:auto;">
+                                    <img class="img-fluid card-image" src=" http://image.tmdb.org/t/p/w185/{{mov.poster}}">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="mov_title">{{mov.name}}</h5>
+                                </div>
+                                <div class="card-footer">
+                                    <a ng-href="#!/tv_details/{{mov._id}}" id="det_but" ng-click="scroll()">View Deatils</a>
+                                </div>
+                            </div>
+                            <br><br>
+                    </div>         
+        </div>
+        
+        </div>
+    </div>
+</div>

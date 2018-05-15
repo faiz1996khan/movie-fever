@@ -1,0 +1,80 @@
+<div ng-controller="advanceCntr">
+<div class="container" >
+<form name="myForm" style="width: 100%">
+    <div class="row form_adv">
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+            <div class="form-group input_box">
+                    <input type="text" ng-model="adv_term" name="title_movie" placeholder="Search" id="adv_form" required><span style="color:red" ng-show="myForm.title_movie.$dirty && myForm.user.$invalid"></span><span ng-show="myForm.title_movie.$error.required" style="color: red">Title is required.</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+            <div class="form-group ser_button">
+                    <a type="submit" ng-click="adv_search(adv_term,genres,year,sort_by)" id="adv_butt">Search</a>
+            </div>
+        </div>
+        </div>
+            <br><br>
+        <div class="row">
+                <div class="form-group">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label>Genres</label>
+                <select class="form-control" name="genres_sel" ng-model="genres.value" id="gnr" required>
+                   
+                    <option value="35" >Comedy</option>
+                    <option value="878">Sci-fi</option>
+                    <option value="27">Horror</option>
+                    <option value="10749">Romance</option>
+                    <option value="28">Action</option>
+                    <option value="53">Thriller</option>
+                    <option value="18">Drama</option>
+                    <option value="96">Mystery</option>
+                    <option value="48">Crime</option>
+                    <option value="16">Animation</option>
+                    <option value="12">Adventure</option>
+                    <option value="14">Fantacy</option>
+                </select>
+                <span ng-show="myForm.genres_sel.$error.required && sort_by === 'Movie'"  style="color: red">Genres is required.</span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label>Year</label>
+                <div >
+                    <input type="number" min="1900"  name="yrs" max="{{now}}" ng-model="year" id="yrs" class="form-control" placeholder="Year" required>
+                    <span ng-show="myForm.yrs.$error.required && sort_by === 'Movie'" style="color: red">Year is required.</span>
+                    
+                </div>
+                 </div>
+                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label>Search For</label>
+                <select class="form-control" name="cat"  ng-model="sort_by">
+                    <option>Movie</option>
+                    <option>TV</option>
+                </select>
+                </div>
+            </div>
+        
+        </div>
+        </form>
+        </div>
+        <div id="adv_srh">
+            <div class="container" ng-controller="advanceCntr">
+        <div  class="row" >
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"  ng-repeat="mov in ans_res" style="padding: 0 20px;">
+                    <br><br>
+                        <div class="card" >
+                            <div class="card-header" style="height:auto;">
+                                <img class="img-fluid card-image" src=" http://image.tmdb.org/t/p/w185/{{mov.poster_path}}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="ti">{{mov.title}}</h5>
+                                <h5 class="ti">{{mov.name}}</h5>
+                            </div>
+                            <div class="card-footer">
+                                <a  style="margin-top: 0px" ng-href="#!/{{url_path}}/{{mov.id}}" id="adv_button" ng-click="scroll()">View Deatils</a>
+                            </div>
+                        </div>
+                        <br><br>
+                </div>         
+    </div>
+    </div>
+</div>
+</div>
