@@ -112,7 +112,7 @@
                 <hr>
         <div  class="row" ng-repeat="movie in similarMovies_info | limitTo:2">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"  ng-repeat="mov in movie">
-                            <div class="card" >
+                            <a id="det_but" ng-href="#!/details/{{mov._id}}" ng-click="scroll()" ><div class="card" >
                                 <div class="card-header" style="height:auto;">
                                     <img class="img-fluid card-image" src=" http://image.tmdb.org/t/p/w185/{{mov.poster}}">
                                 </div>
@@ -120,9 +120,8 @@
                                     <h5 class="mov_title">{{mov.title}}</h5>
                                 </div>
                                 <div class="card-footer">
-                                    <a ng-href="#!/details/{{mov._id}}" id="det_but" ng-click="scroll()">View Deatils</a>
                                 </div>
-                            </div>
+                            </div></a>
                             <br><br>
                     </div>         
         </div>
