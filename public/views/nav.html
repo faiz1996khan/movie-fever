@@ -9,8 +9,8 @@
         </form>
     </div>
         <ul>
-            <a ng-href="/home"><li>Home</li></a>
-            <a ng-href="/advance_search"><li>Advance Search</li></a>
+            <a ng-href="#!/home"><li>Home</li></a>
+            <a ng-href="#!/advance_search"><li>Advance Search</li></a>
         </ul>
             <ul class="suggestions" ng-show="title.length">
                 <li  ng-click="rm(title)"  ng-repeat="x in all | limitTo:4"><a  ng-href="#!/details/{{x.id}}"><img class="image-fluid sug_img" width="30%" height="120%" src="http://image.tmdb.org/t/p/w185/{{x.poster_path}}"><span  id="heading_title">{{x.title}}</span></a></li>
